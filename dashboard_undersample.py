@@ -2,10 +2,18 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import requests
+import s3fs
+import os
+
+fs = s3fs.S3FileSystem(anon=False)
 
 st.title("Essai de dashboard pour undersample")
 
-data = pd.read_csv("df_undersample.csv")
+def read_file(filename):
+    with fs.open(filename) as f:
+        return f.read().decode("utf-8")
+
+data = read_file("testbucketpourp7/df_undersample.csv")
 
 if st.checkbox("Dataframe complet"):
     st.dataframe(data)
