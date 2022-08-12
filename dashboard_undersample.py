@@ -30,4 +30,3 @@ jsonResponse = response.json()
 if st.checkbox("Infos client: "):
     data[data["SK_ID_CURR"] == ID_client]
 
-st.bar_chart(data["CODE_GENDER"])
